@@ -1,0 +1,3 @@
+[submodule "angular-ekart"]
+	path = angular-ekart
+	url = git@github.com:Jvcgoncalves/estudos-angular.git
