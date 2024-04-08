@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { HousingService } from '../services/housing.service';
 import { HousingLocation } from '../interfaces/housing-location'; 
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-details',
@@ -18,17 +18,23 @@ export class DetailsComponent {
   housingLocation: HousingLocation | undefined;
 
   applyForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
+    firstName: new FormControl('',[Validators.required]),
+    lastName: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required, Validators.email]),
   });
 
   constructor(){
     const housingLocationId = +this.route.snapshot.params['id']
-    this.housingLocation = this.housingService.getHouseLocationById(housingLocationId)
+    this.housingService.getHouseLocationById(housingLocationId).then( housingLocation =>{
+      this.housingLocation = housingLocation
+    })
   }
 
   submitApplication(){
+    if(!this.applyForm.valid){
+      console.log("Invalid form");
+      return
+    }
     this.housingService.submitApplication(
       this.applyForm.value.firstName ?? '',
       this.applyForm.value.lastName ?? '',
