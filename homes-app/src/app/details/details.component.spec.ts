@@ -14,7 +14,7 @@ describe('DetailsComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
+// pp
   it('should create', () => {
     expect(component).toBeTruthy();
   });
