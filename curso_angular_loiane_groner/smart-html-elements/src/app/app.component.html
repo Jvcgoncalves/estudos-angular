@@ -1,0 +1,181 @@
+
+<div id="app">
+  <header class="w-100 bg-primary mb-5">
+    <nav class="navbar navbar-expand-lg bg-primary container">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-row gap-4">
+        <li class="nav-item">
+          <a class="nav-link text-light fs-5 {{elementToShow == 'table' ? 'active' : null}}"
+          (click)="elementToShow = 'table'"
+          >Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light fs-5 {{elementToShow == 'accordion' ? 'active' : null}}"
+          (click)="elementToShow = 'accordion'"
+          >
+            Accordion
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle  text-light fs-5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Minhas tabelas
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item fs-5" (click)="elementToShow = 'minha_tabela_1'">Minha tabela 1</a></li>
+            <li><a class="dropdown-item fs-5" (click)="elementToShow = 'minha_tabela_2'">Minha tabela 2</a></li>
+            <li><a class="dropdown-item fs-5" (click)="elementToShow = 'minha_tabela_3'">Minha tabela 3</a></li>
+            <li><a class="dropdown-item fs-5" (click)="elementToShow = 'minha_tabela_4'">Minha tabela 4</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div class="container mb-5" [ngSwitch]="elementToShow">
+    <div class="table" *ngSwitchCase="'table'">
+      <smart-table #table id="table">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Country</th>
+              <th scope="col">Area</th>
+              <th scope="col">Population_Rural</th>
+              <th scope="col">Population_Total</th>
+              <th scope="col">GDP_Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Brazil</td>
+              <td>8515767</td>
+              <td>0.15</td>
+              <td>205809000</td>
+              <td>2353025</td>
+            </tr>
+            <tr>
+              <td>China</td>
+              <td>9388211</td>
+              <td>0.46</td>
+              <td>1375530000</td>
+              <td>10380380</td>
+            </tr>
+            <tr>
+              <td>France</td>
+              <td>675417</td>
+              <td>0.21</td>
+              <td>64529000</td>
+              <td>2846889</td>
+            </tr>
+            <tr>
+              <td>Germany</td>
+              <td>357021</td>
+              <td>0.25</td>
+              <td>81459000</td>
+              <td>3859547</td>
+            </tr>
+            <tr>
+              <td>India</td>
+              <td>3287590</td>
+              <td>0.68</td>
+              <td>1286260000</td>
+              <td>2047811</td>
+            </tr>
+            <tr>
+              <td>Italy</td>
+              <td>301230</td>
+              <td>0.31</td>
+              <td>60676361</td>
+              <td>2147952</td>
+            </tr>
+            <tr>
+              <td>Japan</td>
+              <td>377835</td>
+              <td>0.07</td>
+              <td>126920000</td>
+              <td>4616335</td>
+            </tr>
+            <tr>
+              <td>Russia</td>
+              <td>17098242</td>
+              <td>0.26</td>
+              <td>146544710</td>
+              <td>1857461</td>
+            </tr>
+            <tr>
+              <td>United States</td>
+              <td>9147420</td>
+              <td>0.19</td>
+              <td>323097000</td>
+              <td>17418925</td>
+            </tr>
+            <tr>
+              <td>United Kingdom</td>
+              <td>244820</td>
+              <td>0.18</td>
+              <td>65097000</td>
+              <td>2945146</td>
+            </tr>
+          </tbody>
+        </table>
+      </smart-table>
+    </div>
+    <div class="accordion" *ngSwitchCase="'accordion'">
+      <smart-accordion #accordion>  
+        <smart-accordion-item [label]="'First Item'">First Item Content.</smart-accordion-item>  
+        <smart-accordion-item [label]="'Second Item'">Second Item Content.</smart-accordion-item>  
+        <smart-accordion-item [label]="'Third Item'">Third Item Content.</smart-accordion-item>  
+        <smart-accordion-item [label]="'Fourth Item'">Fourth Item Content.</smart-accordion-item>  
+      </smart-accordion>  
+    </div>
+    <div class="minha_tabela_1" *ngSwitchCase="'minha_tabela_1'">
+      <smart-table #table id="table" style="width: 100%;">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of tableData">
+              <td>{{ row.name }}</td>
+              <td>{{ row.productName }}</td>
+              <td>${{ row.price }}</td>
+              <td>{{ row.quantity }}</td>
+              <td>{{ row.total }}</td>
+            </tr>         
+          </tbody>
+        </table>
+      </smart-table>
+    </div>
+    <div class="minha_tabela_2" *ngSwitchCase="'minha_tabela_2'">
+      <smart-table #table id="ta" style="width: 100%;">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Dono</th>
+              <th scope="col">Carro</th>
+              <th scope="col">Ano</th>
+              <th scope="col">Preço</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let carsData of carsTableData">
+              <td> {{carsData.owner}} </td>
+              <td> {{carsData.car}} </td>
+              <td> {{carsData.year}} </td>
+              <td> {{carsData.price}} </td>
+            </tr>
+          </tbody>
+        </table>
+      </smart-table>
+    </div>
+    <div class="minha_tabela_3" *ngSwitchCase="'minha_tabela_3'">
+      <app-project-tracker-table></app-project-tracker-table>
+    </div>
+    <div class="minha_tabela_4" *ngSwitchCase="'minha_tabela_4'">
+      <app-car-project-table></app-car-project-table>
+    </div>
+  </div>
+</div>
