@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GridModule, Smart, DataAdapter, GridColumn } from "smart-webcomponents-angular/grid"
+import { GridModule, Smart, GridColumn,  } from "smart-webcomponents-angular/grid"
 import { CarsService } from '../../services/cars.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class CarProjectTableComponent implements OnInit{
 	}
 
   editing = {
-    enabled: false,
+    enabled: true,
   }
 
   grouping = {
@@ -36,7 +36,7 @@ export class CarProjectTableComponent implements OnInit{
 
   sorting = {
 		enabled: true,
-		mode: 'many'
+		mode: 'one'
 	}
 	
   delete = {
@@ -44,7 +44,13 @@ export class CarProjectTableComponent implements OnInit{
   }
 
 	filtering = {
-		enabled: true
+		enabled: true,
+    filter: [
+      // ['owner', 'contains te'],
+    ],
+    filterRow: {
+			visible: true
+		}
 	}
 
   selection = {
@@ -57,7 +63,7 @@ export class CarProjectTableComponent implements OnInit{
 
   header = {
 		visible: true,
-		buttons: ['columns', 'filter', 'sort', 'delete', 'search'],
+		buttons: ['columns', 'filter', 'sort'],
 		// onInit(item) {
 		// }
 	}
@@ -90,7 +96,7 @@ export class CarProjectTableComponent implements OnInit{
       label: "Ano", dataField: 'year', columnGroup: "year", cellsFormat: 'MM/yyyy', align: "center", cellsAlign: "center"
     },
     {
-      label: "Preço", dataField: 'price', columnGroup: "price", cellsFormat: 'c2', align: "right", cellsAlign: "right",
+      label: "Preço", dataField: 'price', columnGroup: "price", cellsFormat: 'c', align: "right", cellsAlign: "right",
       formatFunction(settings){
         const rowId = settings.row?.id;
 				const columnDataField = settings.column;
@@ -110,7 +116,14 @@ export class CarProjectTableComponent implements OnInit{
     },
   ]
 
+  // columnGroups = [
+	//   { label: 'owners', align: 'center', name: 'cars' },
+	//   { label: 'Carro', align: 'center', name: 'owners' },
+	//   { label: 'Carro', align: 'center', name: 'price' },
+	// ]
+
   ngOnInit(): void {
     console.log(this.carsService.generateCarData());
   }
+
 }

@@ -18,9 +18,18 @@ export class ProjectTrackerTableComponent {
     enabled: true
   }
 
+	filter = {
+		enabled: true
+	}
+
+	
+	sort = {
+		enabled: true
+	}
+
   dataSource = new Smart.DataAdapter(
 		{
-			dataSource: [{ "id": 0, "firstName": "Beate", "lastName": "Wilson", "productName": "Caramel Latte", "price": 3.8, "quantity": 6, "total": 22.799999999999997 }, { "id": 1, "firstName": "Ian", "lastName": "Nodier", "productName": "Caramel Latte", "price": 3.8, "quantity": 8, "total": 30.4 }, { "id": 2, "firstName": "Petra", "lastName": "Vileid", "productName": "Green Tea", "price": 1.5, "quantity": 2, "total": 3 }, { "id": 3, "firstName": "Mayumi", "lastName": "Ohno", "productName": "Caramel Latte", "price": 3.8, "quantity": 2, "total": 7.6 }, { "id": 4, "firstName": "Mayumi", "lastName": "Saylor", "productName": "Espresso con Panna", "price": 3.25, "quantity": 4, "total": 13 }, { "id": 5, "firstName": "Regina", "lastName": "Fuller", "productName": "Caffe Americano", "price": 2.5, "quantity": 4, "total": 10 }, { "id": 6, "firstName": "Regina", "lastName": "Burke", "productName": "Caramel Latte", "price": 3.8, "quantity": 8, "total": 30.4 }, { "id": 7, "firstName": "Andrew", "lastName": "Petersen", "productName": "Caffe Americano", "price": 2.5, "quantity": 6, "total": 15 }, { "id": 8, "firstName": "Martin", "lastName": "Ohno", "productName": "Espresso con Panna", "price": 3.25, "quantity": 3, "total": 9.75 }, { "id": 9, "firstName": "Beate", "lastName": "Devling", "productName": "Green Tea", "price": 1.5, "quantity": 9, "total": 13.5 }, { "id": 10, "firstName": "Sven", "lastName": "Devling", "productName": "Espresso Truffle", "price": 1.75, "quantity": 6, "total": 10.5 }, { "id": 11, "firstName": "Petra", "lastName": "Burke", "productName": "Peppermint Mocha Twist", "price": 4, "quantity": 11, "total": 44 }],
+			dataSource: [{ "id": 0, "firstName": "Beate", "lastName": "Wilson", "productName": "Caramel Latte", "price": 3.8, "quantity": 6, "total": 22.799999999999997 }, { "id": 1, "firstName": "Ian", "lastName": "Nodier", "productName": "Caramel Latte", "price": 3.8, "quantity": 1, "total": 30.4 }, { "id": 2, "firstName": "Petra", "lastName": "Vileid", "productName": "Green Tea", "price": 1.5, "quantity": 2, "total": 3 }, { "id": 3, "firstName": "Mayumi", "lastName": "Ohno", "productName": "Caramel Latte", "price": 3.8, "quantity": 2, "total": 7.6 }, { "id": 4, "firstName": "Mayumi", "lastName": "Saylor", "productName": "Espresso con Panna", "price": 3.25, "quantity": 4, "total": 13 }, { "id": 5, "firstName": "Regina", "lastName": "Fuller", "productName": "Caffe Americano", "price": 2.5, "quantity": 4, "total": 10 }, { "id": 6, "firstName": "Regina", "lastName": "Burke", "productName": "Caramel Latte", "price": 3.8, "quantity": 8, "total": 30.4 }, { "id": 7, "firstName": "Andrew", "lastName": "Petersen", "productName": "Caffe Americano", "price": 2.5, "quantity": 6, "total": 15 }, { "id": 8, "firstName": "Martin", "lastName": "Ohno", "productName": "Espresso con Panna", "price": 3.25, "quantity": 3, "total": 9.75 }, { "id": 9, "firstName": "Beate", "lastName": "Devling", "productName": "Green Tea", "price": 1.5, "quantity": 9, "total": 13.5 }, { "id": 10, "firstName": "Sven", "lastName": "Devling", "productName": "Espresso Truffle", "price": 1.75, "quantity": 6, "total": 10.5 }, { "id": 11, "firstName": "Petra", "lastName": "Burke", "productName": "Peppermint Mocha Twist", "price": 4, "quantity": 11, "total": 44 }],
 			dataFields:
 				[
 					'id: number',

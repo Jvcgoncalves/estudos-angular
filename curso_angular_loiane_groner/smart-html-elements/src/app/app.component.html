@@ -24,6 +24,7 @@
             <li><a class="dropdown-item fs-5" (click)="elementToShow = 'minha_tabela_2'">Minha tabela 2</a></li>
             <li><a class="dropdown-item fs-5" (click)="elementToShow = 'minha_tabela_3'">Minha tabela 3</a></li>
             <li><a class="dropdown-item fs-5" (click)="elementToShow = 'minha_tabela_4'">Minha tabela 4</a></li>
+            <li><a class="dropdown-item fs-5" (click)="elementToShow = 'minha_tabela_5'">Minha tabela 5</a></li>
           </ul>
         </li>
       </ul>
@@ -176,6 +177,9 @@
     </div>
     <div class="minha_tabela_4" *ngSwitchCase="'minha_tabela_4'">
       <app-car-project-table></app-car-project-table>
+    </div>
+    <div class="minha_tabela_5" *ngSwitchCase="'minha_tabela_5'">
+      <app-filter-sort></app-filter-sort>
     </div>
   </div>
 </div>

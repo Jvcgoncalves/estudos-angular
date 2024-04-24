@@ -6,13 +6,14 @@ import { TableModule } from 'smart-webcomponents-angular/table';
 import { AccordionComponent, AccordionModule } from 'smart-webcomponents-angular/accordion';
 import { DataService } from './services/data.service';
 import { CarsService } from './services/cars.service';
-import { ProjectTrackerTableComponent } from './compnents/project-tracker-table/project-tracker-table.component';
-import { CarProjectTableComponent } from './compnents/car-project-table/car-project-table.component';
+import { ProjectTrackerTableComponent } from './components/project-tracker-table/project-tracker-table.component';
+import { CarProjectTableComponent } from './components/car-project-table/car-project-table.component';
+import { FilterSortComponent } from './components/filter-sort/filter-sort.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AccordionModule, CommonModule, TableModule, ProjectTrackerTableComponent, CarProjectTableComponent],
+  imports: [RouterOutlet, AccordionModule, CommonModule, TableModule, ProjectTrackerTableComponent, CarProjectTableComponent, FilterSortComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -25,7 +26,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   constructor(private dataService: DataService, private carsService: CarsService) { }
 
 
-  elementToShow: string = "minha_tabela_4"
+  elementToShow: string = "minha_tabela_5"
 
   ngAfterViewInit(): void {
 		const that = this;
