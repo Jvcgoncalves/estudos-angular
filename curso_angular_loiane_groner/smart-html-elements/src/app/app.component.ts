@@ -9,11 +9,14 @@ import { CarsService } from './services/cars.service';
 import { ProjectTrackerTableComponent } from './components/project-tracker-table/project-tracker-table.component';
 import { CarProjectTableComponent } from './components/car-project-table/car-project-table.component';
 import { FilterSortComponent } from './components/filter-sort/filter-sort.component';
+import { PokemonsTablesComponent } from './components/pokemons-tables/pokemons-tables.component';
+import { MoreFilterSortTablesComponent } from './components/more-filter-sort-tables/more-filter-sort-tables.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AccordionModule, CommonModule, TableModule, ProjectTrackerTableComponent, CarProjectTableComponent, FilterSortComponent],
+  imports: [RouterOutlet, AccordionModule, CommonModule, TableModule, ProjectTrackerTableComponent, CarProjectTableComponent, FilterSortComponent, PokemonsTablesComponent, MoreFilterSortTablesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -26,7 +29,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   constructor(private dataService: DataService, private carsService: CarsService) { }
 
 
-  elementToShow: string = "minha_tabela_5"
+  elementToShow: string = "minha_tabela_7"
 
   ngAfterViewInit(): void {
 		const that = this;

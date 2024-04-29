@@ -12,6 +12,7 @@ import { GridModule, GridColumn, DataAdapter, Smart } from "smart-webcomponents-
   styleUrl: './project-tracker-table.component.scss',
   encapsulation: ViewEncapsulation.None
 })
+
 export class ProjectTrackerTableComponent {
 
   editing = {
@@ -47,8 +48,15 @@ export class ProjectTrackerTableComponent {
 		{
 			label: 'First Name', dataField: 'firstName', columnGroup: 'name'
 		},
-		{ label: 'Last Name', dataField: 'lastName', columnGroup: 'name' },
-		{ label: 'Product', dataField: 'productName', columnGroup: 'order' },
+		{ label: 'Last Name', dataField: 'lastName', columnGroup: 'name', 
+		},
+		{ label: 'Product', dataField: 'productName', columnGroup: 'order' ,editor: {
+			template: 'autoComplete',
+			readonly: true,
+			autoOpen: true,
+			dropDownButtonPosition: 'right'
+			} 
+		},
 		{ label: 'Quantity', dataField: 'quantity', columnGroup: 'order' },
 		{
 			label: 'Unit Price', dataField: 'price', cellsFormat: 'c2', columnGroup: 'order', formatFunction(settings) {

@@ -63,7 +63,7 @@ export class CarProjectTableComponent implements OnInit{
 
   header = {
 		visible: true,
-		buttons: ['columns', 'filter', 'sort'],
+		buttons: ['columns', 'filter', 'sort', 'search'],
 		// onInit(item) {
 		// }
 	}

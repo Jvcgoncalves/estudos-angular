@@ -16,6 +16,13 @@ export class FilterSortComponent implements OnInit {
 
   filter = {
     enabled: true,
+    filterRow: {
+      visible: true
+    },
+    // filterMenu: {
+		// 	mode: 'excel'
+		// }
+
   }
 
   sort = {
@@ -24,18 +31,18 @@ export class FilterSortComponent implements OnInit {
   }
 
   edit = {
-    enabled: true
+    enabled: false
   }
 
   header = {
-		visible: true,
-		buttons: ['columns'],
+		visible: false,
+		buttons: ['columns',"filter"], // se não colocar nada ele coloca buttons padrao
 		// onInit(item) {
 		// }
 	}
 
   dataSource = new Smart.DataAdapter({
-    dataSource:  this.filterSortService.generateData(),
+    dataSource: this.filterSortService.generateData(),
     dataFields:[
       'first_name: string',
       'last_name: string',
@@ -48,22 +55,79 @@ export class FilterSortComponent implements OnInit {
 
   columns: GridColumn[] = [
     {
-      label: "Nome", dataField:"first_name", columnGroup: "client"
+      label: "Nome", dataField:"first_name", columnGroup: "client", filterEditor:{
+        placeholder: "Pesquise por nome",
+        condition: "CONTAINS"
+      }
     },
     {
       label: "Sobrenome", dataField:"last_name", columnGroup: "client"
     },
     {
-      label: "Produto", dataField:"product", columnGroup: "product"
+      label: "Produto", dataField:"product", columnGroup: "product", filterEditor: {
+				template: '<smart-input drop-down-button-position="left" placeholder="Todos" readonly style="border-radius: 0px; border: none; width: 100%; height:100%"></smart-input',
+				onInit(column: any, editor: any) {
+					const input = editor.querySelector('smart-input');
+					const productNames = ["Todos","Café","Pão","Macarrão","Paçoca","Mandioca","Cachaça","Empadinha","Arroz","Feijão","Chocolate",];
+					input.dataSource = productNames;
+					input.style.setProperty('--smart-background', 'transparent');
+					input.onkeyup = (event: any) => {
+						if (event.key === 'a' && event.ctrlKey) {
+							input.select();
+						}
+					};
+					input.addEventListener('change', () => {
+						if (input.value === '' || input.value === "Todos") {
+							column.filter = '';
+						}
+						else {
+							column.filter = 'equal "' + input.value.trim() + '"';
+						}
+					});
+				}
+			}
     },
     {
-      label: "Quantidade", dataField:"quantity", columnGroup: "product"
+      label: "Quantidade", dataField:"quantity", columnGroup: "product",align: "center", filterEditor: {
+				template: '<smart-input drop-down-button-position="left" placeholder="Igual à" readonly style="border-radius: 0px; border: none; width: 100%; height:100%"></smart-input>',
+        
+				onInit(column: any, editor: any) {
+					const input = editor.querySelector('smart-input');
+          
+          const productQuantities = [ "Nenhum","0",1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+          // so da para filtrar pelo zero se for como string, se não buga o filtro e ele não funciona
+          input.dataSource = productQuantities;
+					input.addEventListener('change', () => {
+						if (input.value === '' || input.value === "Nenhum") {
+							column.filter = '';
+						}
+						else {
+							column.filter = 'equal "' + input.value.trim() + '"';
+						}
+					});
+				}
+			}
     },
     {
-      label: "Preço unitário", dataField:"unitPrice", columnGroup: "product", cellsFormat: "c2"
+      label: "Preço unitário", dataField:"unitPrice", columnGroup: "product", cellsFormat: "c2", formatFunction(settings){
+        const value = settings.value;
+        const cell = settings.cell!;
+
+        if(value <= 2.25){
+          cell.background = "#7b0000";
+          cell.color = "#fff";
+        } else if (value > 7){
+          cell.background = "#22300b";
+          cell.color = "#fff";
+        } else {
+          cell.background = '#3524ff';
+          cell.color = "#fff";
+        }
+
+      }
     },
     {
-      label: "Disponível", dataField:"available", columnGroup: "product"
+      label: "Disponível", dataField:"available", columnGroup: "product", align: "center"
     },
   ]
 
@@ -77,6 +141,6 @@ export class FilterSortComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-    console.log(this.filterSortService.generateData());
+    // console.log(this.dataSource.dataSource);
   }
 }
